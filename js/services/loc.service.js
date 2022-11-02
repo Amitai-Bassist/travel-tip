@@ -16,7 +16,7 @@ var gCurrLoc
 
 const LOCS_KEY = 'locsDB'
 
-const gLocs = [
+let gLocs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
@@ -47,6 +47,7 @@ function setCurrLock(pos) {
 
 function addLocToLocsArry(name, lat, lng) {
     gLocs.push({name, lat, lng})
+    storageService.saveToStorage(LOCS_KEY, gLocs)
 }
 
 function getLocs() {

@@ -1,5 +1,5 @@
 'use strict'
-export const locService = {
+export const storageService = {
     saveToStorage,
     loadFromStorage 
 }
