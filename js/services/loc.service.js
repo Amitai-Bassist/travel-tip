@@ -1,3 +1,6 @@
+import { storageService } from './storage.service.js'
+
+
 export const locService = {
     getLocs,
     getLocsForDisplay,
@@ -8,9 +11,12 @@ export const locService = {
 
 
 
+
 var gCurrLoc
 
-const locs = [
+const LOCS_KEY = 'locsDB'
+
+const gLocs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
@@ -21,6 +27,13 @@ const locs = [
 
 
 function getLocsForDisplay() {
+    let locs = storageService.loadFromStorage(LOCS_KEY)
+    if (!locs ){
+        locs = [{ name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+        { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }]
+    }
+    gLocs = locs
+    storageService.saveToStorage(LOCS_KEY, locs)
     return locs
 }
 
@@ -33,13 +46,13 @@ function setCurrLock(pos) {
 }
 
 function addLocToLocsArry(name, lat, lng) {
-    locs.push({name, lat, lng})
+    gLocs.push({name, lat, lng})
 }
 
 function getLocs() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(locs)
+            resolve(gLocs)
         }, 2000)
     })
 }

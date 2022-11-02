@@ -61,6 +61,7 @@ form{
     margin-top: 33.500px;
     background-color: rgba(255, 255, 255, 0);
     width: 100%;
+    
 }
 .go{
     width: 58px;
@@ -89,4 +90,6 @@ input{
     border: none;
     width:75%;
     padding-left: 10%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
 }
