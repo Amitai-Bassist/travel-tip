@@ -33,16 +33,19 @@ function onInit() {
 
 function renderLocs() {
     var locs = locService.getLocsForDisplay()
-    console.log(locs);
+    
+    var txt =  locs.map(loc => `
+    <li>
+        name: ${loc.name}
+        lat: ${loc.lat}, lng: ${loc.lng}
+    </li>
+    `).join('')
+
     var strHtml = '<ul>'
-    strHtml +=  locs.map(loc => `
-            <li>
-                name: ${loc.name}
-                lat: ${loc.lat}, lng: ${loc.lng}
-            </li>
-    `) 
+    strHtml += txt
     strHtml += `</ul>`
-    document.querySelector('.my-locations').innerHTML = strHtm.jpin('')
+
+    document.querySelector('.my-locations').innerHTML = strHtml
 }
 
 
