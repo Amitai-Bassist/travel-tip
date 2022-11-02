@@ -35,14 +35,14 @@ function renderLocs() {
     var locs = locService.getLocsForDisplay()
     console.log(locs);
     var strHtml = '<ul>'
-    strHtml +=  locs.map(loc => `
+    locs = locs.map(loc => `
             <li>
                 name: ${loc.name}
                 lat: ${loc.lat}, lng: ${loc.lng}
             </li>
     `) 
     strHtml += `</ul>`
-    document.querySelector('.my-locations').innerHTML = strHtm.jpin('')
+    document.querySelector('.my-locations').innerHTML = locs.join('')
 }
 
 
