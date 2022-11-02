@@ -1,12 +1,15 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    setUserLocation,
+    getUserPosition2
 }
 
 
 // Var that is used throughout this Module (not global)
 var gMap
+var gUserPosition
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap')
@@ -49,4 +52,13 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function setUserLocation(res){
+    gUserPosition = {lat: res.coords.latitude,long: res.coords.longitude}
+    console.log('res',gUserPosition)
+}
+
+function getUserPosition2(){
+    return gUserPosition
 }

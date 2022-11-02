@@ -10,10 +10,15 @@ window.onSearchPlace = onSearchPlace
 
 function onInit() {
     mapService.initMap()
-        .then(() => {
+    .then(() => {
             console.log('Map is ready')
+            getPosition()
+            .then(mapService.setUserLocation)
+            .then(mapService.getUserPosition2)
+            .then(onPanTo)
         })
         .catch(() => console.log('Error: cannot init map'))
+    
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -40,17 +45,17 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            console.log('User position is:', pos.coords)
-            document.querySelector('.user-pos').innerText =
+            // console.log('User position is:', pos.coords)
+            document.querySelector('.user-pos').innerText = 
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
         })
         .catch(err => {
             console.log('err!!!', err)
         })
 }
-function onPanTo() {
+function onPanTo(pos) {
     console.log('Panning the Map')
-    mapService.panTo(35.6895, 139.6917)
+    mapService.panTo(pos.lat, pos.long)
 }
 
 function onSearchPlace(ev){
