@@ -1,5 +1,6 @@
 export const locService = {
-    getLocs
+    // getLocs
+    getLocsForDisplay
 }
 
 
@@ -8,12 +9,17 @@ const locs = [
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
-function getLocs() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(locs)
-        }, 2000)
-    })
+function getLocsForDisplay() {
+    return locs
 }
+
+
+// function getLocs() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve(locs)
+//         }, 2000)
+//     })
+// }
 
 
