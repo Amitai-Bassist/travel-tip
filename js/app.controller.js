@@ -10,20 +10,40 @@ window.onSearchPlace = onSearchPlace
 
 function onInit() {
     mapService.initMap()
-    .then(() => {
+        .then(() => {
             console.log('Map is ready')
             getPosition()
-            .then(mapService.setUserLocation)
-            .then(mapService.getUserPosition2)
-            .then((res)=>{
-                onPanTo(res)
-                onAddMarker(res)
-            
-            })
-            .then(addClickEvent)
+                .then(mapService.setUserLocation)
+                .then(mapService.getUserPosition2)
+                .then((res) => {
+                    onPanTo(res)
+                    onAddMarker(res)
+
+                })
+
+                .then((res) => {
+                    console.log('res', res);
+
+                    //למה שטוענים את המפה אין מרקר אל המפה?
+                    //ולמה זה לא פותח לי במיקום שלי?
+
+                    // mapService.addMarker({ res.lat, res.lang})
+
+                    var map = mapService.getMap()
+                    map.addListener('click', onEddPlace)
+                })
+                .then(addClickEvent)
         })
         .catch(() => console.log('Error: cannot init map'))
-    
+
+}
+
+
+function onEddPlace(ev) {
+    var lat = ev.latLng.lat()
+    var lng = ev.latLng.lng()
+
+    mapService.addMarker({ lat, lng })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -36,7 +56,7 @@ function getPosition() {
 
 function onAddMarker(pos) {
     console.log('Adding a marker')
-    mapService.addMarker({ lat: pos.lat, lng: pos.long})
+    mapService.addMarker({ lat: pos.lat, lng: pos.long })
 }
 
 function onGetLocs() {
@@ -51,7 +71,7 @@ function onGetUserPos() {
     getPosition()
         .then(pos => {
             // console.log('User position is:', pos.coords)
-            document.querySelector('.user-pos').innerText = 
+            document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
         })
         .catch(err => {
@@ -63,11 +83,11 @@ function onPanTo(pos) {
     mapService.panTo(pos.lat, pos.long)
 }
 
-function onSearchPlace(ev){
+function onSearchPlace(ev) {
     ev.preventDefault()
     console.log('hi');
 }
 
-function addClickEvent(){
-    
+function addClickEvent() {
+
 }

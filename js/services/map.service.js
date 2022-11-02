@@ -3,7 +3,8 @@ export const mapService = {
     addMarker,
     panTo,
     setUserLocation,
-    getUserPosition2
+    getUserPosition2,
+    getMap //
 }
 
 
@@ -23,6 +24,10 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap)
         })
+}
+
+function getMap() {//
+    return gMap
 }
 
 function addMarker(loc) {
