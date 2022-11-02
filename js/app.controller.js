@@ -15,7 +15,12 @@ function onInit() {
             getPosition()
             .then(mapService.setUserLocation)
             .then(mapService.getUserPosition2)
-            .then(onPanTo)
+            .then((res)=>{
+                onPanTo(res)
+                onAddMarker(res)
+            
+            })
+            .then(addClickEvent)
         })
         .catch(() => console.log('Error: cannot init map'))
     
@@ -29,9 +34,9 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
+function onAddMarker(pos) {
     console.log('Adding a marker')
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
+    mapService.addMarker({ lat: pos.lat, lng: pos.long})
 }
 
 function onGetLocs() {
@@ -61,4 +66,8 @@ function onPanTo(pos) {
 function onSearchPlace(ev){
     ev.preventDefault()
     console.log('hi');
+}
+
+function addClickEvent(){
+    
 }
