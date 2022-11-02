@@ -3,9 +3,90 @@ body{
 }
 
 .grid-container{
+    
     display: grid;
+    height: 70vh;
+    grid-template-columns: 1fr 2fr ;
+    grid-template-rows: 1fr 1fr 2fr 2fr;
+    grid-template-areas: 
+    'logo btns-1'
+    'location btns-2'
+    'btns-3 map'
+    'my-locations-list map'
+    ;
+
+    grid-gap:5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5%;
+    background-color: #34e0a1;
 }
 
+.logo{
+    grid-area: 'logo';
+    font-size: 50px;
+}
+
+.btns-1{
+    grid-area: 'btns-1';
+}
+.btns-2{
+    grid-area: 'btns-2';
+}
+.btns-3{
+    grid-area: 'btns-3';
+}
+
+.my-location{
+    grid-area: 'my-location';
+}
+
+.my-locations-list{
+    grid-area: 'my-locations-list';
+}
+
+.map{
+    grid-area: 'map';
+}
 .hide {
     display: none;
+}
+
+button{
+
+}
+
+form{
+    margin-top: 33.500px;
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%;
+}
+.go{
+    width: 58px;
+    /* height: 57px; */
+    margin-top: 1px;
+    border: none;
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+
+}
+
+input{
+    line-height: 58px;
+    border: none;
+    width:75%;
+    padding-left: 10%;
 }
