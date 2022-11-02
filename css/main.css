@@ -5,3 +5,7 @@ body{
 .grid-container{
     display: grid;
 }
+
+.hide {
+    display: none;
+}

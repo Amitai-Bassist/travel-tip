@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip efrat and amitai</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
     <main class="grid-container">
         <h1>TravelTip</h1>
+        <!-- <h2 class="try">גדכ</h2> -->
         <div>
             <form onsubmit="onSearchPlace(event)" action="">
                 <input type="search" placeholder="type place">
@@ -29,9 +31,17 @@
     <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
     
-    
-    
+    <form onsubmit="onSearchPlace(event)" action="">
+        <input type="search" placeholder="type place">
+        <button> search</button>
+    </form>
+    <p>You are at: <span class="user-pos"></span></p>
 
+
+    <button class="add-place hide" onclick="onClickAddPlace()">add place</button>
+    
+    
+    <script src="./lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 </html>

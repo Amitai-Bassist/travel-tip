@@ -7,6 +7,9 @@ window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onSearchPlace = onSearchPlace
+window.onClickAddPlace = onClickAddPlace
+
+
 
 function onInit() {
     mapService.initMap()
@@ -29,26 +32,50 @@ function onInit() {
         })
         .catch(() => console.log('Error: cannot init map'))
         renderLocs()
+        mapService.getNameOfPos()
+            .then(res => {
+                console.log(res);
+                // document.querySelector('.try').innerText(res) // למה זה אומר שזה לא מאותחל?
+            })
 }
 
 function renderLocs() {
     var locs = locService.getLocsForDisplay()
-    console.log(locs);
+    
+    var txt =  locs.map(loc => `
+    <li>
+        name: ${loc.name}
+        lat: ${loc.lat}, lng: ${loc.lng}
+    </li>
+    `).join('')
+
     var strHtml = '<ul>'
-    locs = locs.map(loc => `
-            <li>
-                name: ${loc.name}
-                lat: ${loc.lat}, lng: ${loc.lng}
-            </li>
-    `) 
+    strHtml += txt
     strHtml += `</ul>`
-    document.querySelector('.my-locations').innerHTML = locs.join('')
+
+    document.querySelector('.my-locations').innerHTML = strHtml
 }
 
+function onClickAddPlace() {
+
+    var gCurrLoc = locService.getCurrLock()
+    var name = prompt('Enter the name of the loc')
+
+    locService.addLocToLocsArry(name,   gCurrLoc.lat,  gCurrLoc.lng)
+    renderLocs()
+    document.querySelector('.add-place').classList.add('hide')
+}
 
 function onEddPlace(ev) {
     var lat = ev.latLng.lat()
     var lng = ev.latLng.lng()
+
+    //פה אני אתפוס את הכפתור ואשנה את הדיספליישלו, 
+    document.querySelector('.add-place').classList.remove('hide')
+    //צריך לעשות את המיקום הנוכחי למיקום הזה
+    locService.setCurrLock({ lat, lng })
+
+
     mapService.addMarker({ lat, lng })
 }
 

@@ -4,7 +4,8 @@ export const mapService = {
     panTo,
     setUserLocation,
     getUserPosition2,
-    getMap //
+    getMap, //
+    getNameOfPos
 }
 
 
@@ -25,6 +26,23 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('Map!', gMap)
         })
 }
+
+
+//פה צריך לעשות פונקציה של קבלת השם של המיקום לפי המיקום שנשלח אליו
+function getNameOfPos(pos) {
+    const API_GEOCODING = 'AIzaSyBMKODDYL-yKhFtNjksLEA8NFBTQB9pwH4'
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${API_GEOCODING}`
+    // var url = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBMKODDYL-yKhFtNjksLEA8NFBTQB9pwH4`
+    //פה צריך פרומיס כדי לקבל את המיקום מ api
+
+    return axios.get(url)
+        .then(({ data }) => {
+            console.log('data:',data.results[0].address_components[0].long_name);
+            //בעצם פה אני מחזירה את השם של מיקום כרגע קבוע מראש
+            return data.results[0].address_components[0].long_name
+        })
+}
+
 
 function getMap() {//
     return gMap
