@@ -18,31 +18,37 @@ function onInit() {
                 .then((res) => {
                     onPanTo(res)
                     onAddMarker(res)
-
+                    return res
                 })
-
                 .then((res) => {
                     console.log('res', res);
-
-                    //למה שטוענים את המפה אין מרקר אל המפה?
-                    //ולמה זה לא פותח לי במיקום שלי?
-
-                    // mapService.addMarker({ res.lat, res.lang})
-
                     var map = mapService.getMap()
                     map.addListener('click', onEddPlace)
                 })
                 .then(addClickEvent)
         })
         .catch(() => console.log('Error: cannot init map'))
+        renderLocs()
+}
 
+function renderLocs() {
+    var locs = locService.getLocsForDisplay()
+    console.log(locs);
+    var strHtml = '<ul>'
+    strHtml +=  locs.map(loc => `
+            <li>
+                name: ${loc.name}
+                lat: ${loc.lat}, lng: ${loc.lng}
+            </li>
+    `) 
+    strHtml += `</ul>`
+    document.querySelector('.my-locations').innerHTML = strHtm.jpin('')
 }
 
 
 function onEddPlace(ev) {
     var lat = ev.latLng.lat()
     var lng = ev.latLng.lng()
-
     mapService.addMarker({ lat, lng })
 }
 
