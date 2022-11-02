@@ -6,20 +6,32 @@
     <title>TravelTip efrat and amitai</title>
 </head>
 <body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 50%; height: 400px;"></div>
+    <main class="grid-container">
+        <h1>TravelTip</h1>
+        <div>
+            <form onsubmit="onSearchPlace(event)" action="">
+                <input type="search" placeholder="type place">
+                <button> Go</button>
+            </form>
+            <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+            <p>Locations: 
+                <pre class="locs"></pre>
+            </p>
+            <button>Copy Location</button>
+        </div>
+        <div class="my-locations"></div>
+        <div id="map" style="width: 50%; height: 400px;"></div>
+    </main>
     <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
     <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+    
     <form onsubmit="onSearchPlace(event)" action="">
         <input type="search" placeholder="type place">
         <button> search</button>
     </form>
     <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: 
-        <pre class="locs"></pre>
-    </p>
+    
     
 
     <script type="module" src="js/app.controller.js"></script>
