@@ -11,7 +11,7 @@
     <main class="grid-container">
         <h1 class="logo">TravelTip</h1>
         <div class="btns-1">
-            <form onsubmit="onSearchPlace(event)" action="">
+            <form class="form" onsubmit="onSearchPlace(event)" action="">
                 <input type="search" placeholder="Where do you want to go?">
                 <button class="go"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
             </form>
@@ -24,7 +24,8 @@
             <p>You are at: <span class="user-pos"></span></p>
         </div>
         <div class="btns-2">
-            <button class="add-place hide" onclick="onClickAddPlace()">Add this place to locations</button>
+                <button hidden  class="btn add-place hide"  onclick="onClickAddPlace()">Add this place to locations</button>
+            </form>
         </div>
         <div class="my-locations-list">
             <h2>My saved locations</h2>
@@ -32,16 +33,6 @@
         </div>
         <div class="map" id="map" style="width: 100%; height: 400px;"></div>
     </main>
-    <div>
-        <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-        <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-        <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-        <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
-    </div>
-    
-    
-    
-    
     <script src="./lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>

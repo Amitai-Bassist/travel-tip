@@ -6,7 +6,7 @@ body{
     
     display: grid;
     height: 70vh;
-    grid-template-columns: 1fr 2fr ;
+    grid-template-columns: 1.2fr 2fr ;
     grid-template-rows: 1fr 1fr 2fr 2fr;
     grid-template-areas: 
     'logo btns-1'
@@ -49,15 +49,13 @@ body{
 .map{
     grid-area: 'map';
 }
-.hide {
-    display: none;
-}
+
 
 button{
 
 }
 
-form{
+.form{
     margin-top: 33.500px;
     background-color: rgba(255, 255, 255, 0);
     width: 100%;
@@ -92,4 +90,57 @@ input{
     padding-left: 10%;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
+}
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap'); */
+
+.btn{
+
+font-family: Roboto, sans-serif;
+font-weight: 0;
+font-size: 14px;
+color: #fff;
+background-color: #0066CC;
+padding: 10px 30px;
+border: 2px solid #0066cc;
+box-shadow: rgb(0, 0, 0) -3px 5px 25px 5px;
+border-radius: 50px;
+transition :  1000ms;
+/* transform: translateY(0); */
+/* display: flex;
+flex-direction: row; */
+align-items: center;
+cursor: pointer;
+margin-top: 10px;
+}
+
+.btn:hover{
+
+transition : 1000ms;
+padding: 10px 50px;
+transform : translateY(-0px);
+background-color: #fff;
+color: #0066cc;
+border: solid 2px #0066cc;
+}
+
+.hide {
+    display: none;
+}
+
+ .delete-location{
+    background-color: #34e0a1;
+    border: none;
+    cursor: pointer;
+    margin-left: 19px;
+}
+
+
+.delete-location:hover{
+    background-color: #fff;
+}
+
+li{
+    height: 90px;
 }

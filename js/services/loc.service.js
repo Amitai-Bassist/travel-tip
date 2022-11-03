@@ -6,7 +6,8 @@ export const locService = {
     getLocsForDisplay,
     getCurrLock,
     setCurrLock,
-    addLocToLocsArry
+    addLocToLocsArry,
+    deleteLocation
 }
 
 
@@ -28,7 +29,7 @@ let gLocs = [
 
 function getLocsForDisplay() {
     let locs = storageService.loadFromStorage(LOCS_KEY)
-    if (!locs ){
+    if (!locs || !locs.length ){
         locs = [{ name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
         { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }]
     }
@@ -56,6 +57,11 @@ function getLocs() {
             resolve(gLocs)
         }, 2000)
     })
+}
+
+function deleteLocation(idx){
+    gLocs.splice(idx,1)
+    storageService.saveToStorage(LOCS_KEY, gLocs)
 }
 
 

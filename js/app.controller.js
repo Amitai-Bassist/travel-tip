@@ -8,6 +8,7 @@ window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onSearchPlace = onSearchPlace
 window.onClickAddPlace = onClickAddPlace
+window.onDeleteLocation = onDeleteLocation
 
 
 
@@ -42,10 +43,12 @@ function onInit() {
 function renderLocs() {
     var locs = locService.getLocsForDisplay()
     
-    var txt =  locs.map(loc => `
+    var txt =  locs.map((loc,idx) => `
     <li>
         name: ${loc.name}
         lat: ${loc.lat}, lng: ${loc.lng}
+        <button class="btn go-location" onclick="onGoToLocation('${idx}')">Go➡</button>
+        <button class="delete-location" onclick="onDeleteLocation('${idx}')">❌</button>
     </li>
     `).join('')
 
@@ -64,6 +67,7 @@ function onClickAddPlace() {
     locService.addLocToLocsArry(name,   gCurrLoc.lat,  gCurrLoc.lng)
     renderLocs()
     document.querySelector('.add-place').classList.add('hide')
+    
 }
 
 function onEddPlace(ev) {
@@ -72,6 +76,7 @@ function onEddPlace(ev) {
 
     //פה אני אתפוס את הכפתור ואשנה את הדיספליישלו, 
     document.querySelector('.add-place').classList.remove('hide')
+    document.querySelector('.add-place').hidden = false
     //צריך לעשות את המיקום הנוכחי למיקום הזה
     locService.setCurrLock({ lat, lng })
 
@@ -121,6 +126,8 @@ function onSearchPlace(ev) {
     console.log('hi');
 }
 
-function addClickEvent() {
-
+function onDeleteLocation(idx){
+    locService.deleteLocation(idx)
+    renderLocs()
+    console.log('hi we are here');
 }
